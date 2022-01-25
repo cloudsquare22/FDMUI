@@ -43,7 +43,7 @@ struct LabelTextFieldView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             Label(self.title, systemImage: self.systemImage)
-            TextField("prompt", text: self.$input)
+            TextField("Number", text: self.$input)
                 .keyboardType(UIKeyboardType.numberPad)
         }
         .padding(8.0)
