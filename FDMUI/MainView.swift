@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var step: Double = 0
-    @State var productivity: Double = 0
-    @State var fd: Double = 0
-    @State var dd: Double = 0
-    @State var cd: Double = 0
-    @State var ut: Double = 0
-    @State var it: Double = 0
+    @State var step: String = ""
+    @State var productivity: String = ""
+    @State var fd: String = ""
+    @State var dd: String = ""
+    @State var cd: String = ""
+    @State var ut: String = ""
+    @State var it: String = ""
 
     var body: some View {
         VStack {
@@ -66,7 +66,7 @@ struct MainView_Previews: PreviewProvider {
 
 
 struct LabelTextFieldView: View {
-    @Binding var input: Double
+    @Binding var input: String
     var title: String
     var systemImage: String
     var unit: String? = nil
