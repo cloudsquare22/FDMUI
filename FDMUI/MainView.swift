@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var dataModel: DataModel
     @State var step: String = ""
     @State var productivity: String = ""
     @State var fd: String = ""
@@ -21,9 +22,9 @@ struct MainView: View {
             Label("FDMUI", systemImage: "chart.xyaxis.line")
                 .font(.largeTitle)
             HStack {
-                LabelTextFieldView(input: self.$step, title: "Step", systemImage: "doc.plaintext", unit: "KL")
-                    .onChange(of: self.step, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.step, title: "Step", systemImage: "doc.plaintext", unit: "KL")
+                    .onChange(of: self.dataModel.step, perform: { newline in
+                        print("change:\(newline)")
                     })
                 LabelTextFieldView(input: self.$step, title: "Productivity", systemImage: "doc.plaintext")
                     .onChange(of: self.productivity, perform: { newline in
@@ -77,6 +78,35 @@ struct LabelTextFieldView: View {
             HStack {
                 TextField("Number", text: self.$input)
                     .keyboardType(UIKeyboardType.decimalPad)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.trailing)
+                if let unit = self.unit {
+                    Text(unit)
+                }
+            }
+        }
+        .padding(8.0)
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.primary, lineWidth: 1)
+        )
+    }
+}
+
+struct LabelTextFieldNumberView: View {
+    @Binding var input: Double
+    var title: String
+    var systemImage: String
+    var unit: String? = nil
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8.0) {
+            Label(self.title, systemImage: self.systemImage)
+            HStack {
+                TextField(value: self.$input, formatter: NumberFormatter(), prompt: Text("Number"), label: {
+                    Label(self.title, systemImage: self.systemImage)
+                })
+                    .keyboardType(UIKeyboardType.numberPad)
                     .textFieldStyle(.roundedBorder)
                     .multilineTextAlignment(.trailing)
                 if let unit = self.unit {

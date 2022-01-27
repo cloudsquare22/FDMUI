@@ -12,6 +12,7 @@ struct FDMUIApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(DataModel())
         }
     }
 }
