@@ -9,13 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var dataModel: DataModel
-    @State var step: String = ""
-    @State var productivity: String = ""
-    @State var fd: String = ""
-    @State var dd: String = ""
-    @State var cd: String = ""
-    @State var ut: String = ""
-    @State var it: String = ""
 
     var body: some View {
         VStack {
@@ -25,32 +18,39 @@ struct MainView: View {
                 LabelTextFieldNumberView(input: self.$dataModel.step, title: "Step", systemImage: "doc.plaintext", unit: "KL")
                     .onChange(of: self.dataModel.step, perform: { newline in
                         print("change:\(newline)")
+                        self.dataModel.calculation()
                     })
-                LabelTextFieldView(input: self.$step, title: "Productivity", systemImage: "doc.plaintext")
-                    .onChange(of: self.productivity, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.productivity, title: "Productivity", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.productivity, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.calculation()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.manmonth, title: "Man-Month", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.manmonth, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.calculation()
                     })
             }
             HStack {
-                LabelTextFieldView(input: self.$fd, title: "FD", systemImage: "doc.plaintext")
-                    .onChange(of: self.fd, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.fd, perform: { newline in
+                        print("change:\(newline)")
                     })
-                LabelTextFieldView(input: self.$dd, title: "DD", systemImage: "doc.plaintext")
-                    .onChange(of: self.dd, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.dd, title: "DD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.dd, perform: { newline in
+                        print("change:\(newline)")
                     })
-                LabelTextFieldView(input: self.$cd, title: "CD", systemImage: "doc.plaintext")
-                    .onChange(of: self.cd, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.cd, title: "CD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.cd, perform: { newline in
+                        print("change:\(newline)")
                     })
-                LabelTextFieldView(input: self.$ut, title: "UT", systemImage: "doc.plaintext")
-                    .onChange(of: self.ut, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.ut, title: "UT", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.ut, perform: { newline in
+                        print("change:\(newline)")
                     })
-                LabelTextFieldView(input: self.$it, title: "IT", systemImage: "doc.plaintext")
-                    .onChange(of: self.it, perform: { newline in
-                        print("change:" + newline)
+                LabelTextFieldNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.it, perform: { newline in
+                        print("change:\(newline)")
                     })
             }
             Spacer()
@@ -94,6 +94,7 @@ struct LabelTextFieldView: View {
 }
 
 struct LabelTextFieldNumberView: View {
+    @EnvironmentObject var dataModel: DataModel
     @Binding var input: Double
     var title: String
     var systemImage: String
@@ -103,7 +104,7 @@ struct LabelTextFieldNumberView: View {
         VStack(alignment: .leading, spacing: 8.0) {
             Label(self.title, systemImage: self.systemImage)
             HStack {
-                TextField(value: self.$input, formatter: NumberFormatter(), prompt: Text("Number"), label: {
+                TextField(value: self.$input, formatter: DecimanNumberFormatter(), prompt: Text("Number"), label: {
                     Label(self.title, systemImage: self.systemImage)
                 })
                     .keyboardType(UIKeyboardType.numberPad)
