@@ -76,8 +76,9 @@ struct LabelTextFieldView: View {
             Label(self.title, systemImage: self.systemImage)
             HStack {
                 TextField("Number", text: self.$input)
-                    .keyboardType(UIKeyboardType.numberPad)
+                    .keyboardType(UIKeyboardType.decimalPad)
                     .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.trailing)
                 if let unit = self.unit {
                     Text(unit)
                 }
