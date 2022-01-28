@@ -11,11 +11,11 @@ struct MainView: View {
     @EnvironmentObject var dataModel: DataModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             Label("FDMUI", systemImage: "chart.xyaxis.line")
                 .font(.largeTitle)
             HStack {
-                LabelTextFieldNumberView(input: self.$dataModel.step, title: "Step", systemImage: "doc.plaintext", unit: "KL")
+                LabelTextFieldNumberView(input: self.$dataModel.step, title: "Step(KL)", systemImage: "doc.plaintext")
                     .onChange(of: self.dataModel.step, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.calculation()
@@ -51,6 +51,49 @@ struct MainView: View {
                 LabelTextFieldNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext")
                     .onChange(of: self.dataModel.it, perform: { newline in
                         print("change:\(newline)")
+                    })
+            }
+            Image(systemName: "arrowtriangle.down")
+                .font(.largeTitle)
+            HStack {
+                Label("Adjust", systemImage: "digitalcrown.horizontal.arrow.counterclockwise")
+                    .font(.largeTitle)
+                Spacer()
+                if self.dataModel.manmonth == self.dataModel.adjustsum {
+                    Text(String.init(format: "Sum:%.2f", self.dataModel.adjustsum))
+                        .font(.largeTitle)
+                }
+                else {
+                    Text(String.init(format: "Sum:%.2f", self.dataModel.adjustsum))
+                        .font(.largeTitle)
+                        .foregroundColor(.red)
+                }
+            }
+            HStack {
+                LabelTextFieldNumberView(input: self.$dataModel.adjustfd, title: "FD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.adjustfd, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustcalculation()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.adjustdd, title: "DD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.adjustdd, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustcalculation()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.adjustcd, title: "CD", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.adjustcd, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustcalculation()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.adjustut, title: "UT", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.adjustut, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustcalculation()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.adjustit, title: "IT", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.adjustit, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustcalculation()
                     })
             }
             Spacer()

@@ -16,6 +16,12 @@ final class DataModel: ObservableObject {
     @Published var cd: Double = 0.0
     @Published var ut: Double = 0.0
     @Published var it: Double = 0.0
+    @Published var adjustfd: Double = 0.0
+    @Published var adjustdd: Double = 0.0
+    @Published var adjustcd: Double = 0.0
+    @Published var adjustut: Double = 0.0
+    @Published var adjustit: Double = 0.0
+    @Published var adjustsum: Double = 0.0
 
     func calculation() {
         self.manmonth = self.step / self.productivity
@@ -24,6 +30,10 @@ final class DataModel: ObservableObject {
         self.cd = self.manmonth / 5
         self.ut = self.manmonth / 5
         self.it = self.manmonth / 5
+    }
+    
+    func adjustcalculation() {
+        self.adjustsum = self.adjustfd + self.adjustdd + self.adjustcd + self.adjustut + self.adjustit
     }
 }
 
