@@ -12,32 +12,34 @@ struct MainView: View {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
-        VStack(spacing: 8.0) {
-            Label("FDMUI", systemImage: "chart.xyaxis.line")
-                .font(.largeTitle)
-            BaseView()
-                .padding(8.0)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.primary, lineWidth: 1)
-                )
-//            Image(systemName: "arrowtriangle.down")
-//                .font(.largeTitle)
-            AdjustView()
-                .padding(8.0)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.primary, lineWidth: 1)
-                )
-            PersonView()
-                .padding(8.0)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.primary, lineWidth: 1)
-                )
-            Spacer()
+        ScrollView {
+            VStack(spacing: 8.0) {
+                Label("FDMUI", systemImage: "chart.xyaxis.line")
+                    .font(.largeTitle)
+                BaseView()
+                    .padding(8.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.primary, lineWidth: 1)
+                    )
+    //            Image(systemName: "arrowtriangle.down")
+    //                .font(.largeTitle)
+                AdjustView()
+                    .padding(8.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.primary, lineWidth: 1)
+                    )
+                PersonView()
+                    .padding(8.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.primary, lineWidth: 1)
+                    )
+                Spacer()
+            }
+            .padding(8.0)
         }
-        .padding(8.0)
         .onChange(of: scenePhase, perform: { value in
                                     switch(value) {
                                     case .active:
@@ -240,27 +242,27 @@ struct PersonView: View {
                 }
             }
             HStack {
-                LabelTextFieldNumberView(input: self.$dataModel.personfd, title: "FD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.personfd, title: "FD", systemImage: "person")
                     .onChange(of: self.dataModel.personfd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.persondd, title: "DD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.persondd, title: "DD", systemImage: "person")
                     .onChange(of: self.dataModel.persondd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personcd, title: "CD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.personcd, title: "CD", systemImage: "person")
                     .onChange(of: self.dataModel.personcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personut, title: "UT", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.personut, title: "UT", systemImage: "person")
                     .onChange(of: self.dataModel.personut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personit, title: "IT", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.personit, title: "IT", systemImage: "person")
                     .onChange(of: self.dataModel.personit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
