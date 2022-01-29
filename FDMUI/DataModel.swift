@@ -28,6 +28,18 @@ final class DataModel: ObservableObject {
     @Published var personut: Double = 0.0
     @Published var personit: Double = 0.0
     @Published var personsum: Double = 0.0
+    @Published var periodweek: Double = 0.0
+    @Published var periodfd: Double = 0.0
+    @Published var perioddd: Double = 0.0
+    @Published var periodcd: Double = 0.0
+    @Published var periodut: Double = 0.0
+    @Published var periodit: Double = 0.0
+    @Published var adjustperiodfd: Double = 0.0
+    @Published var adjustperioddd: Double = 0.0
+    @Published var adjustperiodcd: Double = 0.0
+    @Published var adjustperiodut: Double = 0.0
+    @Published var adjustperiodit: Double = 0.0
+    @Published var adjustperiodsum: Double = 0.0
 
     let userdefault = UserDefaults.standard
     
@@ -36,6 +48,7 @@ final class DataModel: ObservableObject {
         self.calculation()
         self.adjustcalculation()
         self.personcalculation()
+        self.periodcalcuration()
     }
 
     func load() {
@@ -75,6 +88,24 @@ final class DataModel: ObservableObject {
         if let personit = userdefault.object(forKey: "personit") as? Double {
             self.personit = personit
         }
+        if let periodweek = userdefault.object(forKey: "periodweek") as? Double {
+            self.periodweek = periodweek
+        }
+        if let adjustperiodfd = userdefault.object(forKey: "adjustperiodfd") as? Double {
+            self.adjustperiodfd = adjustperiodfd
+        }
+        if let adjustperioddd = userdefault.object(forKey: "adjustperioddd") as? Double {
+            self.adjustperioddd = adjustperioddd
+        }
+        if let adjustperiodcd = userdefault.object(forKey: "adjustperiodcd") as? Double {
+            self.adjustperiodcd = adjustperiodcd
+        }
+        if let adjustperiodut = userdefault.object(forKey: "adjustperiodut") as? Double {
+            self.adjustperiodut = adjustperiodut
+        }
+        if let adjustperiodit = userdefault.object(forKey: "adjustperiodit") as? Double {
+            self.adjustperiodit = adjustperiodit
+        }
     }
     
     func save() {
@@ -90,6 +121,12 @@ final class DataModel: ObservableObject {
         self.userdefault.set(self.personcd, forKey: "personcd")
         self.userdefault.set(self.personut, forKey: "personut")
         self.userdefault.set(self.personit, forKey: "personit")
+        self.userdefault.set(self.periodweek, forKey: "periodweek")
+        self.userdefault.set(self.adjustperiodfd, forKey: "adjustperiodfd")
+        self.userdefault.set(self.adjustperioddd, forKey: "adjustperioddd")
+        self.userdefault.set(self.adjustperiodcd, forKey: "adjustperiodcd")
+        self.userdefault.set(self.adjustperiodut, forKey: "adjustperiodut")
+        self.userdefault.set(self.adjustperiodit, forKey: "adjustperiodit")
     }
 
     func calculation() {
@@ -107,6 +144,15 @@ final class DataModel: ObservableObject {
 
     func personcalculation() {
         self.personsum = self.personfd + self.persondd + self.personcd + self.personut + self.personit
+    }
+    
+    func periodcalcuration() {
+        self.periodfd = self.periodweek / 5
+        self.perioddd = self.periodweek / 5
+        self.periodcd = self.periodweek / 5
+        self.periodut = self.periodweek / 5
+        self.periodit = self.periodweek / 5
+        self.adjustperiodsum = self.adjustperiodfd + self.adjustperioddd + self.adjustperiodcd + self.adjustperiodut + self.adjustperiodit
     }
 }
 
