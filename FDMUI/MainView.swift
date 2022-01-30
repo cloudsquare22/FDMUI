@@ -350,6 +350,18 @@ struct PeriodView: View {
                         self.dataModel.periodcalcuration()
                     })
             }
+            HStack {
+                LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "calendar")
+                    .onChange(of: self.dataModel.step, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustperiodcalcuration()
+                    })
+                    .onChange(of: self.dataModel.adjustperiodcd, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustperiodcalcuration()
+                    })
+                LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "calendar")
+            }
         }
     }
 }

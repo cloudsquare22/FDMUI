@@ -40,6 +40,8 @@ final class DataModel: ObservableObject {
     @Published var adjustperiodut: Double = 0.0
     @Published var adjustperiodit: Double = 0.0
     @Published var adjustperiodsum: Double = 0.0
+    @Published var stepbyday: Double = 0.0
+    @Published var stepdaybyperson: Double = 0.0
 
     let userdefault = UserDefaults.standard
     
@@ -49,6 +51,7 @@ final class DataModel: ObservableObject {
         self.adjustcalculation()
         self.personcalculation()
         self.periodcalcuration()
+        self.adjustperiodcalcuration()
     }
 
     func load() {
@@ -153,6 +156,11 @@ final class DataModel: ObservableObject {
         self.periodut = self.periodweek / 5
         self.periodit = self.periodweek / 5
         self.adjustperiodsum = self.adjustperiodfd + self.adjustperioddd + self.adjustperiodcd + self.adjustperiodut + self.adjustperiodit
+    }
+    
+    func adjustperiodcalcuration() {
+        self.stepbyday = self.step / (self.adjustperiodcd * 5)
+        self.stepdaybyperson = self.stepbyday / self.personcd
     }
 }
 
