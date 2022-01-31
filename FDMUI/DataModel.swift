@@ -10,6 +10,8 @@ import Foundation
 final class DataModel: ObservableObject {
     @Published var step: Double = 0.0
     @Published var productivity: Double = 1.0
+    @Published var utitemstandard: Double = 1.0
+    @Published var ititemstandard: Double = 1.0
     @Published var manmonth: Double = 0.0
     @Published var fd: Double = 0.0
     @Published var dd: Double = 0.0
@@ -42,6 +44,12 @@ final class DataModel: ObservableObject {
     @Published var adjustperiodsum: Double = 0.0
     @Published var stepbyday: Double = 0.0
     @Published var stepdaybyperson: Double = 0.0
+    @Published var utitemcount: Double = 0.0
+    @Published var utbyday: Double = 0.0
+    @Published var utbydayperson: Double = 0.0
+    @Published var ititemcount: Double = 0.0
+    @Published var itbyday: Double = 0.0
+    @Published var itbydayperson: Double = 0.0
 
     let userdefault = UserDefaults.standard
     
@@ -60,6 +68,12 @@ final class DataModel: ObservableObject {
         }
         if let productivity = userdefault.object(forKey: "productivity") as? Double {
             self.productivity = productivity
+        }
+        if let utitemstandard = userdefault.object(forKey: "utitemstandard") as? Double {
+            self.utitemstandard = utitemstandard
+        }
+        if let ititemstandard = userdefault.object(forKey: "ititemstandard") as? Double {
+            self.ititemstandard = ititemstandard
         }
         if let adjustfd = userdefault.object(forKey: "adjustfd") as? Double {
             self.adjustfd = adjustfd
@@ -114,6 +128,8 @@ final class DataModel: ObservableObject {
     func save() {
         self.userdefault.set(self.step, forKey: "step")
         self.userdefault.set(self.productivity, forKey: "productivity")
+        self.userdefault.set(self.utitemstandard, forKey: "utitemstandard")
+        self.userdefault.set(self.ititemstandard, forKey: "ititemstandard")
         self.userdefault.set(self.adjustfd, forKey: "adjustfd")
         self.userdefault.set(self.adjustdd, forKey: "adjustdd")
         self.userdefault.set(self.adjustcd, forKey: "adjustcd")
@@ -161,6 +177,12 @@ final class DataModel: ObservableObject {
     func adjustperiodcalcuration() {
         self.stepbyday = self.step / (self.adjustperiodcd * 5)
         self.stepdaybyperson = self.stepbyday / self.personcd
+        self.utitemcount = self.step * self.utitemstandard
+        self.utbyday = self.utitemcount / (self.adjustperiodut * 5)
+        self.utbydayperson = self.utbyday / self.personut
+        self.ititemcount = self.step * self.ititemstandard
+        self.itbyday = self.ititemcount / (self.adjustperiodit * 5)
+        self.itbydayperson = self.itbyday / self.personit
     }
 }
 

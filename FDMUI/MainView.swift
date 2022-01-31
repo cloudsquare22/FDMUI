@@ -22,21 +22,19 @@ struct MainView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.primary, lineWidth: 1)
                     )
-    //            Image(systemName: "arrowtriangle.down")
-    //                .font(.largeTitle)
-                AdjustView()
-                    .padding(8.0)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.primary, lineWidth: 1)
-                    )
-                PersonView()
+                ManMonthView()
                     .padding(8.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.primary, lineWidth: 1)
                     )
                 PeriodView()
+                    .padding(8.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.primary, lineWidth: 1)
+                    )
+                ReferenceView()
                     .padding(8.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
@@ -165,13 +163,38 @@ struct BaseView: View {
                     .onChange(of: self.dataModel.step, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.calculation()
+                        self.dataModel.adjustperiodcalcuration()
                     })
                 LabelTextFieldNumberView(input: self.$dataModel.productivity, title: "Productivity", systemImage: "doc.plaintext")
                     .onChange(of: self.dataModel.productivity, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.calculation()
                     })
-                LabelTextNumberView(input: self.$dataModel.manmonth, title: "Man-Month", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.utitemstandard, title: "UT item(/KL)", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.utitemstandard, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustperiodcalcuration()
+                    })
+                LabelTextFieldNumberView(input: self.$dataModel.ititemstandard, title: "IT item(/KL)", systemImage: "doc.plaintext")
+                    .onChange(of: self.dataModel.ititemstandard, perform: { newline in
+                        print("change:\(newline)")
+                        self.dataModel.adjustperiodcalcuration()
+                    })
+            }
+        }
+    }
+}
+
+struct ManMonthView: View {
+    @EnvironmentObject var dataModel: DataModel
+    var body: some View {
+        VStack {
+            HStack {
+                Label("Man-Month", systemImage: "doc.on.doc")
+                    .font(.largeTitle)
+                Spacer()
+                Text(String.init(format: "Sum:%.2f", self.dataModel.manmonth))
+                    .font(.largeTitle)
             }
             HStack {
                 LabelTextNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext")
@@ -180,6 +203,8 @@ struct BaseView: View {
                 LabelTextNumberView(input: self.$dataModel.ut, title: "UT", systemImage: "doc.plaintext")
                 LabelTextNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext")
             }
+            AdjustView()
+            PersonView()
         }
     }
 }
@@ -190,16 +215,16 @@ struct AdjustView: View {
     var body: some View {
         VStack {
             HStack {
-                Label("Adjust", systemImage: "digitalcrown.horizontal.arrow.counterclockwise")
-                    .font(.largeTitle)
+                Label("Adjust", systemImage: "dial.max")
+                    .font(.title)
                 Spacer()
                 if self.dataModel.manmonth == self.dataModel.adjustsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustsum))
-                        .font(.largeTitle)
+                        .font(.title)
                 }
                 else {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustsum))
-                        .font(.largeTitle)
+                        .font(.title)
                         .foregroundColor(.red)
                 }
             }
@@ -241,16 +266,16 @@ struct PersonView: View {
         VStack {
             HStack {
                 Label("Person", systemImage: "person.2")
-                    .font(.largeTitle)
+                    .font(.title)
                 Spacer()
                 if self.dataModel.manmonth > self.dataModel.personsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.personsum))
-                        .font(.largeTitle)
+                        .font(.title)
                         .foregroundColor(.green)
                 }
                 else {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.personsum))
-                        .font(.largeTitle)
+                        .font(.title)
                         .foregroundColor(.red)
                 }
             }
@@ -269,16 +294,19 @@ struct PersonView: View {
                     .onChange(of: self.dataModel.personcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
+                        self.dataModel.adjustperiodcalcuration()
                     })
                 LabelTextFieldNumberView(input: self.$dataModel.personut, title: "UT", systemImage: "person")
                     .onChange(of: self.dataModel.personut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
+                        self.dataModel.adjustperiodcalcuration()
                     })
                 LabelTextFieldNumberView(input: self.$dataModel.personit, title: "IT", systemImage: "person")
                     .onChange(of: self.dataModel.personit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
+                        self.dataModel.adjustperiodcalcuration()
                     })
             }
         }
@@ -338,29 +366,48 @@ struct PeriodView: View {
                     .onChange(of: self.dataModel.adjustperiodcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
+                        self.dataModel.adjustperiodcalcuration()
                     })
                 LabelTextFieldNumberView(input: self.$dataModel.adjustperiodut, title: "UT", systemImage: "calendar")
                     .onChange(of: self.dataModel.adjustperiodut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
+                        self.dataModel.adjustperiodcalcuration()
                     })
                 LabelTextFieldNumberView(input: self.$dataModel.adjustperiodit, title: "IT", systemImage: "calendar")
                     .onChange(of: self.dataModel.adjustperiodit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
+                        self.dataModel.adjustperiodcalcuration()
                     })
+            }
+        }
+    }
+}
+
+struct ReferenceView: View {
+    @EnvironmentObject var dataModel: DataModel
+
+    var body: some View {
+        VStack {
+            HStack {
+                Label("Reference", systemImage: "doc.text.below.ecg")
+                    .font(.largeTitle)
+                Spacer()
             }
             HStack {
                 LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "calendar")
-                    .onChange(of: self.dataModel.step, perform: { newline in
-                        print("change:\(newline)")
-                        self.dataModel.adjustperiodcalcuration()
-                    })
-                    .onChange(of: self.dataModel.adjustperiodcd, perform: { newline in
-                        print("change:\(newline)")
-                        self.dataModel.adjustperiodcalcuration()
-                    })
                 LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "calendar")
+            }
+            HStack {
+                LabelTextNumberView(input: self.$dataModel.utitemcount, title: "UT Item count", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.utbyday, title: "UT Item/Day", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.utbydayperson, title: "UT Item(Day)/Person", systemImage: "checklist")
+            }
+            HStack {
+                LabelTextNumberView(input: self.$dataModel.ititemcount, title: "IT Item count", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.itbyday, title: "IT Item/Day", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.itbydayperson, title: "IT Item(Day)/Person", systemImage: "checklist")
             }
         }
     }
