@@ -267,6 +267,12 @@ struct PersonView: View {
             HStack {
                 Label("Person", systemImage: "person.2")
                     .font(.title)
+                Button(action: {
+                    self.dataModel.copyManMonthAdujdttoPerson()
+                }, label: {
+                    Label("Adjust copy", systemImage: "doc.on.doc")
+                })
+                    .buttonStyle(.borderedProminent)
                 Spacer()
                 if self.dataModel.manmonth > self.dataModel.personsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.personsum))
@@ -340,6 +346,12 @@ struct PeriodView: View {
             HStack {
                 Label("Adjust", systemImage: "dial.max")
                     .font(.title)
+                Button(action: {
+                    self.dataModel.copyPeriodtoAdujdt()
+                }, label: {
+                    Label("Period copy", systemImage: "doc.on.doc")
+                })
+                    .buttonStyle(.borderedProminent)
                 Spacer()
                 if self.dataModel.periodweek == self.dataModel.adjustperiodsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustperiodsum))
@@ -396,8 +408,8 @@ struct ReferenceView: View {
                 Spacer()
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "calendar")
-                LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "calendar")
+                LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "keyboard")
+                LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "keyboard")
             }
             HStack {
                 LabelTextNumberView(input: self.$dataModel.utitemcount, title: "UT Item count", systemImage: "checklist")

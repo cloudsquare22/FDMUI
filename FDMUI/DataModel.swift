@@ -184,6 +184,22 @@ final class DataModel: ObservableObject {
         self.itbyday = self.ititemcount / (self.adjustperiodit * 5)
         self.itbydayperson = self.itbyday / self.personit
     }
+    
+    func copyManMonthAdujdttoPerson() {
+        self.personfd =  self.adjustfd
+        self.persondd =  self.adjustdd
+        self.personcd =  self.adjustcd
+        self.personut =  self.adjustut
+        self.personit =  self.adjustit
+    }
+
+    func copyPeriodtoAdujdt() {
+        self.adjustperiodfd =  self.periodfd
+        self.adjustperioddd =  self.perioddd
+        self.adjustperiodcd =  self.periodcd
+        self.adjustperiodut =  self.periodut
+        self.adjustperiodit =  self.periodit
+    }
 }
 
 class DecimanNumberFormatter : NumberFormatter {
