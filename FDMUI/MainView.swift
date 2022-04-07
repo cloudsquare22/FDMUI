@@ -217,6 +217,12 @@ struct AdjustView: View {
             HStack {
                 Label("Adjust", systemImage: "dial.max")
                     .font(.title)
+                Button(action: {
+//                    self.dataModel.copyManMonthAdujdttoPerson()
+                }, label: {
+                    Label("Man-Month copy", systemImage: "doc.on.doc")
+                })
+                    .buttonStyle(.borderedProminent)
                 Spacer()
                 if self.dataModel.manmonth == self.dataModel.adjustsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustsum))
