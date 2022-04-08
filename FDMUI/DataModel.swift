@@ -185,6 +185,14 @@ final class DataModel: ObservableObject {
         self.itbydayperson = self.itbyday / self.personit
     }
     
+    func copyManMonthtoAdujdt() {
+        self.adjustfd =  self.fd
+        self.adjustdd =  self.dd
+        self.adjustcd =  self.cd
+        self.adjustut =  self.ut
+        self.adjustit =  self.it
+    }
+
     func copyManMonthAdujdttoPerson() {
         self.personfd =  self.adjustfd
         self.persondd =  self.adjustdd

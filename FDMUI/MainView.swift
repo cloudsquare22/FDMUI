@@ -218,7 +218,7 @@ struct AdjustView: View {
                 Label("Adjust", systemImage: "dial.max")
                     .font(.title)
                 Button(action: {
-//                    self.dataModel.copyManMonthAdujdttoPerson()
+                    self.dataModel.copyManMonthtoAdujdt()
                 }, label: {
                     Label("Man-Month copy", systemImage: "doc.on.doc")
                 })
