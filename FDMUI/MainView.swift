@@ -280,7 +280,12 @@ struct PersonView: View {
                 })
                     .buttonStyle(.borderedProminent)
                 Spacer()
-                if self.dataModel.manmonth > self.dataModel.personsum {
+                if self.dataModel.manmonth == self.dataModel.personsum {
+                    Text(String.init(format: "Sum:%.2f", self.dataModel.personsum))
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
+                else if self.dataModel.manmonth > self.dataModel.personsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.personsum))
                         .font(.title)
                         .foregroundColor(.green)
