@@ -178,11 +178,31 @@ final class DataModel: ObservableObject {
         self.stepbyday = self.step / (self.adjustperiodcd * 5)
         self.stepdaybyperson = self.stepbyday / self.personcd
         self.utitemcount = self.step * self.utitemstandard
-        self.utbyday = self.utitemcount / (self.adjustperiodut * 5)
-        self.utbydayperson = self.utbyday / self.personut
+        if self.utitemcount == 0 {
+            self.utbyday = 0
+        }
+        else {
+            self.utbyday = self.utitemcount / (self.adjustperiodut * 5)
+        }
+        if self.utbyday == 0 {
+            self.utbydayperson = 0
+        }
+        else {
+            self.utbydayperson = self.utbyday / self.personut
+        }
         self.ititemcount = self.step * self.ititemstandard
-        self.itbyday = self.ititemcount / (self.adjustperiodit * 5)
-        self.itbydayperson = self.itbyday / self.personit
+        if self.ititemcount == 0 {
+            self.itbyday = 0
+        }
+        else {
+            self.itbyday = self.ititemcount / (self.adjustperiodit * 5)
+        }
+        if self.itbyday == 0 {
+            self.itbydayperson = 0
+        }
+        else {
+            self.itbydayperson = self.itbyday / self.personit
+        }
     }
     
     func copyManMonthtoAdujdt() {
