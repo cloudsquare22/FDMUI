@@ -175,8 +175,18 @@ final class DataModel: ObservableObject {
     }
     
     func adjustperiodcalcuration() {
-        self.stepbyday = self.step / (self.adjustperiodcd * 5)
-        self.stepdaybyperson = self.stepbyday / self.personcd
+        if self.step == 0 {
+            self.step = 0
+        }
+        else {
+            self.stepbyday = self.step / (self.adjustperiodcd * 5)
+        }
+        if self.stepbyday == 0 {
+            self.stepbyday = 0
+        }
+        else {
+            self.stepdaybyperson = self.stepbyday / self.personcd
+        }
         self.utitemcount = self.step * self.utitemstandard
         if self.utitemcount == 0 {
             self.utbyday = 0
