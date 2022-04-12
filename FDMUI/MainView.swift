@@ -99,6 +99,7 @@ struct LabelTextNumberView: View {
     var title: String
     var systemImage: String
     var unit: String? = nil
+    var color: Color = .primary
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
@@ -114,7 +115,7 @@ struct LabelTextNumberView: View {
         .padding(8.0)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.primary, lineWidth: 1)
+                .stroke(self.color, lineWidth: 1)
         )
     }
 }
@@ -125,7 +126,8 @@ struct LabelTextFieldNumberView: View {
     var title: String
     var systemImage: String
     var unit: String? = nil
-    
+    var color: Color = .primary
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             Label(self.title, systemImage: self.systemImage)
@@ -144,7 +146,7 @@ struct LabelTextFieldNumberView: View {
         .padding(8.0)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.primary, lineWidth: 1)
+                .stroke(self.color, lineWidth: 1)
         )
     }
 }
@@ -197,9 +199,9 @@ struct ManMonthView: View {
                     .font(.largeTitle)
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext")
-                LabelTextNumberView(input: self.$dataModel.dd, title: "DD", systemImage: "doc.plaintext")
-                LabelTextNumberView(input: self.$dataModel.cd, title: "CD", systemImage: "doc.plaintext")
+                LabelTextNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext", color: .blue)
+                LabelTextNumberView(input: self.$dataModel.dd, title: "DD", systemImage: "doc.plaintext", color: .green)
+                LabelTextNumberView(input: self.$dataModel.cd, title: "CD", systemImage: "doc.plaintext", color: .orange)
                 LabelTextNumberView(input: self.$dataModel.ut, title: "UT", systemImage: "doc.plaintext")
                 LabelTextNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext")
             }
@@ -235,17 +237,17 @@ struct AdjustView: View {
                 }
             }
             HStack {
-                LabelTextFieldNumberView(input: self.$dataModel.adjustfd, title: "FD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustfd, title: "FD", systemImage: "doc.plaintext", color: .blue)
                     .onChange(of: self.dataModel.adjustfd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustdd, title: "DD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustdd, title: "DD", systemImage: "doc.plaintext", color: .green)
                     .onChange(of: self.dataModel.adjustdd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustcd, title: "CD", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustcd, title: "CD", systemImage: "doc.plaintext", color: .orange)
                     .onChange(of: self.dataModel.adjustcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
@@ -297,17 +299,17 @@ struct PersonView: View {
                 }
             }
             HStack {
-                LabelTextFieldNumberView(input: self.$dataModel.personfd, title: "FD", systemImage: "person")
+                LabelTextFieldNumberView(input: self.$dataModel.personfd, title: "FD", systemImage: "person", color: .blue)
                     .onChange(of: self.dataModel.personfd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.persondd, title: "DD", systemImage: "person")
+                LabelTextFieldNumberView(input: self.$dataModel.persondd, title: "DD", systemImage: "person", color: .green)
                     .onChange(of: self.dataModel.persondd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personcd, title: "CD", systemImage: "person")
+                LabelTextFieldNumberView(input: self.$dataModel.personcd, title: "CD", systemImage: "person", color: .orange)
                     .onChange(of: self.dataModel.personcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
@@ -348,9 +350,9 @@ struct PeriodView: View {
                     })
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.periodfd, title: "FD", systemImage: "calendar")
-                LabelTextNumberView(input: self.$dataModel.perioddd, title: "DD", systemImage: "calendar")
-                LabelTextNumberView(input: self.$dataModel.periodcd, title: "CD", systemImage: "calendar")
+                LabelTextNumberView(input: self.$dataModel.periodfd, title: "FD", systemImage: "calendar", color: .blue)
+                LabelTextNumberView(input: self.$dataModel.perioddd, title: "DD", systemImage: "calendar", color: .green)
+                LabelTextNumberView(input: self.$dataModel.periodcd, title: "CD", systemImage: "calendar", color: .orange)
                 LabelTextNumberView(input: self.$dataModel.periodut, title: "UT", systemImage: "calendar")
                 LabelTextNumberView(input: self.$dataModel.periodit, title: "IT", systemImage: "calendar")
             }
@@ -375,17 +377,17 @@ struct PeriodView: View {
                 }
             }
             HStack {
-                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodfd, title: "FD", systemImage: "calendar")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodfd, title: "FD", systemImage: "calendar", color: .blue)
                     .onChange(of: self.dataModel.adjustperiodfd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustperioddd, title: "DD", systemImage: "calendar")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustperioddd, title: "DD", systemImage: "calendar", color: .green)
                     .onChange(of: self.dataModel.adjustperioddd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodcd, title: "CD", systemImage: "calendar")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodcd, title: "CD", systemImage: "calendar", color: .orange)
                     .onChange(of: self.dataModel.adjustperiodcd, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
