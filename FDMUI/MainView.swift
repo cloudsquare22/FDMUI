@@ -202,8 +202,8 @@ struct ManMonthView: View {
                 LabelTextNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext", color: .blue)
                 LabelTextNumberView(input: self.$dataModel.dd, title: "DD", systemImage: "doc.plaintext", color: .green)
                 LabelTextNumberView(input: self.$dataModel.cd, title: "CD", systemImage: "doc.plaintext", color: .orange)
-                LabelTextNumberView(input: self.$dataModel.ut, title: "UT", systemImage: "doc.plaintext")
-                LabelTextNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext")
+                LabelTextNumberView(input: self.$dataModel.ut, title: "UT", systemImage: "doc.plaintext", color: .purple)
+                LabelTextNumberView(input: self.$dataModel.it, title: "IT", systemImage: "doc.plaintext", color: .brown)
             }
             AdjustView()
             PersonView()
@@ -252,12 +252,12 @@ struct AdjustView: View {
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustut, title: "UT", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustut, title: "UT", systemImage: "doc.plaintext", color: .purple)
                     .onChange(of: self.dataModel.adjustut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustit, title: "IT", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustit, title: "IT", systemImage: "doc.plaintext", color: .brown)
                     .onChange(of: self.dataModel.adjustit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustcalculation()
@@ -315,13 +315,13 @@ struct PersonView: View {
                         self.dataModel.personcalculation()
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personut, title: "UT", systemImage: "person")
+                LabelTextFieldNumberView(input: self.$dataModel.personut, title: "UT", systemImage: "person", color: .purple)
                     .onChange(of: self.dataModel.personut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.personit, title: "IT", systemImage: "person")
+                LabelTextFieldNumberView(input: self.$dataModel.personit, title: "IT", systemImage: "person", color: .brown)
                     .onChange(of: self.dataModel.personit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.personcalculation()
@@ -353,8 +353,8 @@ struct PeriodView: View {
                 LabelTextNumberView(input: self.$dataModel.periodfd, title: "FD", systemImage: "calendar", color: .blue)
                 LabelTextNumberView(input: self.$dataModel.perioddd, title: "DD", systemImage: "calendar", color: .green)
                 LabelTextNumberView(input: self.$dataModel.periodcd, title: "CD", systemImage: "calendar", color: .orange)
-                LabelTextNumberView(input: self.$dataModel.periodut, title: "UT", systemImage: "calendar")
-                LabelTextNumberView(input: self.$dataModel.periodit, title: "IT", systemImage: "calendar")
+                LabelTextNumberView(input: self.$dataModel.periodut, title: "UT", systemImage: "calendar", color: .purple)
+                LabelTextNumberView(input: self.$dataModel.periodit, title: "IT", systemImage: "calendar", color: .brown)
             }
             HStack {
                 Label("Adjust", systemImage: "dial.max")
@@ -393,13 +393,13 @@ struct PeriodView: View {
                         self.dataModel.periodcalcuration()
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodut, title: "UT", systemImage: "calendar")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodut, title: "UT", systemImage: "calendar", color: .purple)
                     .onChange(of: self.dataModel.adjustperiodut, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodit, title: "IT", systemImage: "calendar")
+                LabelTextFieldNumberView(input: self.$dataModel.adjustperiodit, title: "IT", systemImage: "calendar", color: .brown)
                     .onChange(of: self.dataModel.adjustperiodit, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.periodcalcuration()
