@@ -14,8 +14,21 @@ struct MainView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 8.0) {
-                Label("FDMUI", systemImage: "chart.xyaxis.line")
-                    .font(.largeTitle)
+                HStack(spacing: 0.0) {
+//                    Label("FDMUI", systemImage: "chart.xyaxis.line")
+                    Image(systemName: "chart.xyaxis.line")
+                    Text("F")
+                        .foregroundColor(.blue)
+                    Text("D")
+                        .foregroundColor(.green)
+                    Text("M")
+                        .foregroundColor(.orange)
+                    Text("U")
+                        .foregroundColor(.purple)
+                    Text("I")
+                        .foregroundColor(.brown)
+                }
+                .font(.largeTitle)
                 BaseView()
                     .padding(8.0)
                     .overlay(
