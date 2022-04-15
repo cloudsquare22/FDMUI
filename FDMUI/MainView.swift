@@ -229,7 +229,7 @@ struct AdjustView: View {
 
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment: .bottom) {
                 Label("Adjust", systemImage: "dial.max")
                     .font(.title)
                 Button(action: {
@@ -285,7 +285,7 @@ struct PersonView: View {
 
     var body: some View {
         VStack {
-            HStack {
+            HStack(alignment: .bottom) {
                 Label("Person", systemImage: "person.2")
                     .font(.title)
                 Button(action: {
