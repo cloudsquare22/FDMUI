@@ -167,7 +167,7 @@ struct LabelTextFieldNumberView: View {
 struct BaseView: View {
     @EnvironmentObject var dataModel: DataModel
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack {
                 Label("Base", systemImage: "doc.on.doc")
                     .font(.largeTitle)
@@ -203,7 +203,7 @@ struct BaseView: View {
 struct ManMonthView: View {
     @EnvironmentObject var dataModel: DataModel
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack {
                 Label("Man-Month", systemImage: "doc.on.doc")
                     .font(.largeTitle)
@@ -349,7 +349,7 @@ struct PeriodView: View {
     @EnvironmentObject var dataModel: DataModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack {
                 Label("Period", systemImage: "calendar")
                     .font(.largeTitle)
@@ -427,7 +427,7 @@ struct ReferenceView: View {
     @EnvironmentObject var dataModel: DataModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack {
                 Label("Reference", systemImage: "doc.text.below.ecg")
                     .font(.largeTitle)
