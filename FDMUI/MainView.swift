@@ -228,7 +228,7 @@ struct AdjustView: View {
     @EnvironmentObject var dataModel: DataModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack(alignment: .bottom) {
                 Label("Adjust", systemImage: "dial.max")
                     .font(.title)
@@ -284,7 +284,7 @@ struct PersonView: View {
     @EnvironmentObject var dataModel: DataModel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack(alignment: .bottom) {
                 Label("Person", systemImage: "person.2")
                     .font(.title)
