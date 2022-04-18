@@ -381,11 +381,11 @@ struct PeriodView: View {
                 Spacer()
                 if self.dataModel.periodweek == self.dataModel.adjustperiodsum {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustperiodsum))
-                        .font(.largeTitle)
+                        .font(.title)
                 }
                 else {
                     Text(String.init(format: "Sum:%.2f", self.dataModel.adjustperiodsum))
-                        .font(.largeTitle)
+                        .font(.title)
                         .foregroundColor(.red)
                 }
             }
