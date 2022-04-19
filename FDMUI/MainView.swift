@@ -209,7 +209,7 @@ struct ManMonthView: View {
                     .font(.largeTitle)
                 Spacer()
                 Text(String.init(format: "Sum:%.2f", self.dataModel.manmonth))
-                    .font(.largeTitle)
+                    .font(.title)
             }
             HStack {
                 LabelTextNumberView(input: self.$dataModel.fd, title: "FD", systemImage: "doc.plaintext", color: .blue)
