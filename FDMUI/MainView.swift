@@ -434,18 +434,18 @@ struct ReferenceView: View {
                 Spacer()
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "keyboard")
-                LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "keyboard")
+                LabelTextNumberView(input: self.$dataModel.stepbyday, title: "CD Step/Day", systemImage: "keyboard", color: .orange)
+                LabelTextNumberView(input: self.$dataModel.stepdaybyperson, title: "CD Step(Day)/Person", systemImage: "keyboard", color: .orange)
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.utitemcount, title: "UT Item count", systemImage: "checklist")
-                LabelTextNumberView(input: self.$dataModel.utbyday, title: "UT Item/Day", systemImage: "checklist")
-                LabelTextNumberView(input: self.$dataModel.utbydayperson, title: "UT Item(Day)/Person", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.utitemcount, title: "UT Item count", systemImage: "checklist", color: .purple)
+                LabelTextNumberView(input: self.$dataModel.utbyday, title: "UT Item/Day", systemImage: "checklist", color: .purple)
+                LabelTextNumberView(input: self.$dataModel.utbydayperson, title: "UT Item(Day)/Person", systemImage: "checklist", color: .purple)
             }
             HStack {
-                LabelTextNumberView(input: self.$dataModel.ititemcount, title: "IT Item count", systemImage: "checklist")
-                LabelTextNumberView(input: self.$dataModel.itbyday, title: "IT Item/Day", systemImage: "checklist")
-                LabelTextNumberView(input: self.$dataModel.itbydayperson, title: "IT Item(Day)/Person", systemImage: "checklist")
+                LabelTextNumberView(input: self.$dataModel.ititemcount, title: "IT Item count", systemImage: "checklist", color: .brown)
+                LabelTextNumberView(input: self.$dataModel.itbyday, title: "IT Item/Day", systemImage: "checklist", color: .brown)
+                LabelTextNumberView(input: self.$dataModel.itbydayperson, title: "IT Item(Day)/Person", systemImage: "checklist", color: .brown)
             }
         }
     }
