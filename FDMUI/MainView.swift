@@ -185,12 +185,12 @@ struct BaseView: View {
                         print("change:\(newline)")
                         self.dataModel.calculation()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.utitemstandard, title: "UT item(/KL)", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.utitemstandard, title: "UT item(/KL)", systemImage: "doc.plaintext", color: .purple)
                     .onChange(of: self.dataModel.utitemstandard, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.ititemstandard, title: "IT item(/KL)", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.ititemstandard, title: "IT item(/KL)", systemImage: "doc.plaintext", color: .brown)
                     .onChange(of: self.dataModel.ititemstandard, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.adjustperiodcalcuration()
