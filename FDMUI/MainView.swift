@@ -180,7 +180,7 @@ struct BaseView: View {
                         self.dataModel.calculation()
                         self.dataModel.adjustperiodcalcuration()
                     })
-                LabelTextFieldNumberView(input: self.$dataModel.productivity, title: "Productivity", systemImage: "doc.plaintext")
+                LabelTextFieldNumberView(input: self.$dataModel.productivity, title: "Productivity(/MM)", systemImage: "doc.plaintext")
                     .onChange(of: self.dataModel.productivity, perform: { newline in
                         print("change:\(newline)")
                         self.dataModel.calculation()
@@ -205,7 +205,7 @@ struct ManMonthView: View {
     var body: some View {
         VStack(spacing: 8.0) {
             HStack {
-                Label("Man-Month", systemImage: "doc.on.doc")
+                Label("Man-Month(MM)", systemImage: "doc.on.doc")
                     .font(.largeTitle)
                 Spacer()
                 Text(String.init(format: "Sum:%.2f", self.dataModel.manmonth))
