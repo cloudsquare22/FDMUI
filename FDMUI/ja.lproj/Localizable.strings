@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  FDMUI
+
+  Created by Shin Inaba on 2023/03/14.
+  
+*/
+"Base" = "基本情報";
+"Man-Month(MM)" = "人月";
+"Period" = "期間";
+"Reference" = "参考情報";
+"Adjust" = "調整";
+"Person" = "実働";
+"Week" = "週";
